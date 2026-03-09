@@ -1,6 +1,4 @@
 # SD-MVC-HW-LAMP #
-
-url-shortener-lamp
 │
 ├── .github
 │   ├── ISSUE_TEMPLATE
