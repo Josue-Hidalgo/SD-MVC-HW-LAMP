@@ -1,5 +1,5 @@
 # SD-MVC-HW-LAMP #
-│
+```text│
 ├── .github
 │   ├── ISSUE_TEMPLATE
 │   └── PULL_REQUEST_TEMPLATE.md
@@ -39,3 +39,4 @@
 │
 ├── README.md
 └── .gitignore
+```
