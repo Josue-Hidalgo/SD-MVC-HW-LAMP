@@ -1,40 +1,40 @@
 ---
 name: Feature
-about: Nueva funcionalidad
+about: Proponer o implementar una nueva funcionalidad
 title: "[FEATURE] "
 labels: feature
 assignees: ""
 ---
 
-# Descripción
+## Descripción
 
-Explique la funcionalidad que se quiere implementar.
+Explique la funcionalidad que se desea implementar.
 
 ---
 
-# Problema que resuelve
+## Problema que resuelve
 
 ¿Por qué es necesaria esta funcionalidad?
 
 ---
 
-# Tareas
+## Propuesta de solución
+
+Describa cómo se podría implementar.
+
+---
+
+## Tareas
 
 - [ ] Diseñar solución
 - [ ] Implementar código
 - [ ] Probar funcionalidad
-- [ ] Documentar API o uso
+- [ ] Documentar cambios
 
 ---
 
-# Criterios de aceptación
+## Criterios de aceptación
 
 - [ ] Funciona correctamente
 - [ ] No rompe funcionalidades existentes
 - [ ] Cumple los requisitos del proyecto
-
----
-
-# Resultado esperado
-
-Nueva funcionalidad funcionando en el sistema.

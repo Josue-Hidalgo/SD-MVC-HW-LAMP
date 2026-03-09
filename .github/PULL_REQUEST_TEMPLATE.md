@@ -50,5 +50,3 @@ Ejemplo:
 # Evidencia
 
 Incluya capturas, logs o ejemplos de requests/responses.
-
-### Ejemplo Request

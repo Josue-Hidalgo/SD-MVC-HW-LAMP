@@ -1,39 +1,50 @@
 ---
 name: Bug
-about: Reportar un error
+about: Reportar un error o comportamiento incorrecto
 title: "[BUG] "
 labels: bug
 assignees: ""
 ---
 
-# Descripción del problema
+## Descripción del problema
 
-Explique claramente el error.
-
----
-
-# Pasos para reproducir
-
-1. Paso 1
-2. Paso 2
-3. Paso 3
+Explique claramente cuál es el error.
 
 ---
 
-# Resultado esperado
+## Pasos para reproducir
 
-Qué debería suceder.
-
----
-
-# Resultado actual
-
-Qué está ocurriendo realmente.
+1. Ir a ...
+2. Hacer clic en ...
+3. Ejecutar ...
+4. Aparece el error
 
 ---
 
-# Evidencia
+## Resultado esperado
 
-- Logs
+Explique qué debería suceder.
+
+---
+
+## Resultado actual
+
+Explique qué está sucediendo realmente.
+
+---
+
+## Evidencia
+
+Incluya si es posible:
+
 - Capturas de pantalla
+- Logs
 - Mensajes de error
+
+---
+
+## Entorno
+
+Sistema operativo:
+Navegador (si aplica):
+Versión del proyecto:
