@@ -3,7 +3,7 @@
 -- Based on the schema design that you can see in /Docs/Diagram.png
 
 CREATE TABLE ShortCut (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_short_cut INT AUTO_INCREMENT PRIMARY KEY,
     short_code VARCHAR(10) NOT NULL UNIQUE,
     original_url VARCHAR(2048) NOT NULL,
     base_url VARCHAR(255) NOT NULL,
@@ -11,11 +11,11 @@ CREATE TABLE ShortCut (
 );
 
 CREATE TABLE AccessLog (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    shortcut_id INT NOT NULL,
+    id_access_log BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_short_cut INT NOT NULL,
     ip_address VARCHAR(45) NOT NULL,
-    country VARCHAR(10) NOT NULL,
+    country CHAR(2) NOT NULL,
     access_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (shortcut_id) REFERENCES ShortCut(id)
+    FOREIGN KEY (id_short_cut) REFERENCES ShortCut(id_short_cut)
 );

@@ -30,3 +30,24 @@ FROM AccessLog
 WHERE shortcut_id = ?
 GROUP BY country;
 
+-- Delete all data (use with caution!!)
+DELETE FROM AccessLog;
+DELETE FROM ShortCut;
+
+-- Increase the access count
+UPDATE ShortCut
+SET access_count = access_count + 1
+WHERE id = ?;
+
+-- Insert a new access log entry
+INSERT INTO AccessLog (shortcut_id, access_date, country)
+VALUES (?, NOW(), ?);
+
+-- Insert a new ShortCut entry
+INSERT INTO ShortCut (short_code, original_url, base_url)
+VALUES (?, ?, ?);
+
+-- Get id_shortcut when user is trying to access a short URL
+SELECT id_short_cut
+FROM ShortCut
+WHERE short_code = ?;
