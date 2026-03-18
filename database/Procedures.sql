@@ -59,6 +59,31 @@ END$$
 
 DELIMITER ;
 
+DELIMITER $$
+
+CREATE PROCEDURE GetAccessCountForAllShortCuts()
+BEGIN
+    SELECT s.id_short_cut,
+           s.short_code,
+           COUNT(a.id_access_log) AS total_accesses
+    FROM ShortCut s
+    LEFT JOIN AccessLog a ON s.id_short_cut = a.id_short_cut
+    GROUP BY s.id_short_cut
+    ORDER BY total_accesses DESC;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE GetAllShortCuts()
+BEGIN
+    SELECT id_short_cut, short_code, original_url, base_url, creation_date
+    FROM ShortCut
+    ORDER BY creation_date DESC;
+END$$
+
+DELIMITER ;
 
 DELIMITER $$
 
@@ -112,3 +137,7 @@ CALL GetAccessesByDay(1);
 CALL GetAccessesByCountry(1);
 -- Eliminar todos los datos (cuidado)
 CALL DeleteAllData();
+-- Obtener todos los shortcuts
+CALL GetAllShortCuts();
+-- Obtener total de accesos para todos los shortcuts
+CALL GetAccessCountForAllShortCuts();
