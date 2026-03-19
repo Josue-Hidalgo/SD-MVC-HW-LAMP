@@ -23,7 +23,23 @@
         </div>
         <div id="changes""></div>
 
+        <dialog id="defaultStatsModal">
+            <div class="btnsDiv">
+                <div class="canva">
+                    <canvas id="Grafica" width="1" height="1"></canvas>
+                </div>
+                <div class="canva">
+                    <canvas id="GraficaC" width="1" height="1"></canvas>
+                </div>
+                <div id="extraData">
+                    <p id="totalAcces">Total de accesos: </p>
+                    <p id="creationDate">Fecha de creacion: </p>
+                </div>
+                <button class="miniBTN smoothColor2" onclick="DONTshowStatsModal()">Cerrar</button>
+            </div>
+        </dialog>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="script.js"></script>
-        
     </body>
 </html>

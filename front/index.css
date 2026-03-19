@@ -5,7 +5,40 @@ body{
 }
 
 p{
+  margin: 5px;
   padding-left: 20px;
+}
+
+dialog{
+  background: white;
+  box-shadow: 0 0 10px 0 rgb(183, 183, 183);
+  padding: 2px 3px 3px 3px;
+  border: none;
+  border-radius: 10px;
+}
+
+#defaultStatsModal {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#extraData{
+  margin-top: 20px;
+  text-align: left;
+}
+
+#totalAcces{
+  margin-top: 20px;
+}
+
+#creationDate{
+  margin-top: 20px;
+}
+
+.canva{
+  display: inline-block;
+  width: 49%;
 }
 
 .title{
@@ -76,12 +109,12 @@ p{
   background-color: white;
   box-shadow: 0 0 10px 0 rgb(183, 183, 183);
   width: 60%;
-  height: 80px;
-  margin-top: 30px;
-  margin-left: auto;
+  height: 20%;
+  margin-top: 20px;
   margin-right: auto;
-  padding-right: 0px;
-  padding-left: 0px;
+  margin-left: auto;
+  margin-bottom: 10px;
+  padding: 0px;
   border-radius: 10px;
 }
 .surlist:hover{
@@ -95,6 +128,7 @@ p{
   margin-top: 10px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 0px;
 }
 
 .AcortBTN {
@@ -123,18 +157,20 @@ p{
   display: inline-flex;
   width: 20%;
   justify-content: right;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 0px;
 }
 
 .miniBTN{
   color: white;
   box-shadow: 0 0 10px 0 rgb(183, 183, 183);
   border: 0px;
-  box-shadow: 0 0 10px 0 rgb(183, 183, 183);
   padding: 10px;
+  margin-top: 0px;
   margin-right: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
 }
 .miniBTN:hover{
@@ -145,6 +181,14 @@ p{
   color:rgb(207, 207, 207);
 }
 
+.btnsDiv{
+  width: 100%;
+  text-align: right;
+}
+
 .smoothColor{
   background: linear-gradient(45deg,rgb(246,54,150),rgb(240,40,100),rgb(255,146,64));
+}
+.smoothColor2{
+  background: linear-gradient(45deg,rgb(255,146,64),rgb(240,40,100),rgb(246,54,150));
 }
