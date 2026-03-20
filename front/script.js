@@ -4,23 +4,46 @@ let G2;
 window.onload = function(){
     this.document.getElementById("longURLInput").value = '';
     let lista = "";
-    let urlsLen = 0;
+    getAllSURLS();
         
-    function loadDoc(){
+    function getAllSURLS(){
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET","http://localhost:8000/GASURLS.php",true);
+        xhttp.onload = function(){
+            surlen = 0;
+            surls = this.responseText.split("\n");
+            console.log(surls);
+            for(let i = 0; i<surls.length-1;i++){
+                items = surls[i].split(" ");
+                cpyBTN = "<div class=\'BTNOptions\'><button class=\"miniBTN smoothColor\" onclick=\"copyToClipboard("+"\'surls"+surlen+"\')\">Copiar</button></div>";
+                text = "<div id=\"surls"+surlen+"\" class=\'surlText\'><p>"+items[0]+"</p></div>";
+                text2 = "<div class=\'surlText\'><p class=\"truncateText\">"+items[1]+"</p></div>";
+                statsBTN = "<div class=\'BTNOptions\'><button class=\"miniBTN smoothColor\" onclick=\"showStatsModal("+"\'surls"+surlen+"\')\">Estadisticas</button></div>";
+                lista += "<div class=\"surlist\">\n\t"+text+cpyBTN+text2+statsBTN+"\n</div>";
+                document.getElementById("changes").innerHTML = lista;
+                surlen++;
+            }
+        }
+        xhttp.send();
+    }
+
+    function addSC(){
         const xhttp = new XMLHttpRequest();
         xhttp.open("POST","http://localhost:8000/prueba.php",true);
         xhttp.onload = function(){
+            lista2 = "";
+            surlen = lista.length;
             urls = this.responseText.split(" ");
-            cpyBTN = "<div class=\'BTNOptions\'><button class=\"miniBTN smoothColor\" onclick=\"copyToClipboard("+"\'surls"+urlsLen+"\')\">Copiar</button></div>";
-            text = "<div id=\"surls"+urlsLen+"\" class=\'surlText\'><p>"+urls[4]+"</p></div>";
-            text2 = "<div class=\'surlText\'><p>"+urls[5]+"</p></div>";
-            statsBTN = "<div class=\'BTNOptions\'><button class=\"miniBTN smoothColor\" onclick=\"showStatsModal("+"\'surls"+urlsLen+"\')\">Estadisticas</button></div>";
-            lista += "<div class=\"surlist\">\n\t"+text+cpyBTN+text2+statsBTN+"\n</div>";
+            cpyBTN = "<div class=\'BTNOptions\'><button class=\"miniBTN smoothColor\" onclick=\"copyToClipboard("+"\'surls"+surlen+"\')\">Copiar</button></div>";
+            text = "<div id=\"surls"+surlen+"\" class=\'surlText\'><p>"+urls[4]+"</p></div>";
+            text2 = "<div class=\'surlText\'><p class=\"truncateText\">"+urls[5]+"</p></div>";
+            statsBTN = "<div class=\'BTNOptions\'><button class=\"miniBTN smoothColor\" onclick=\"showStatsModal("+"\'surls"+surlen+"\')\">Estadisticas</button></div>";
+            lista2 += "<div class=\"surlist\">\n\t"+text+cpyBTN+text2+statsBTN+"\n</div>";
             console.log(this.responseText);
-            urlsLen++;
+            lista = lista2+lista;
             document.getElementById("changes").innerHTML = lista;
         }
-        inputText = document.getElementById("longURLInput").value;
+        inputText = document.getElementById("longURLInput").value.replaceAll("\"","\'");
 
         json = JSON.stringify({
           url: inputText,
@@ -32,7 +55,7 @@ window.onload = function(){
     }
 
     document.getElementById("acortBTN").addEventListener("click",function(){
-        loadDoc();
+        addSC();
     });
 }
 
@@ -47,8 +70,31 @@ function copyToClipboard(id){
     alert("Copied to clipboard");
 }
 
+function getViews(surl){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET","http://localhost:8000/GVBSURLS.php?surl="+surl,true);
+    xhttp.onload = function(){
+        views = this.responseText;
+        document.getElementById("totalAcces").textContent = "Total de accesos: "+views;
+    }
+    xhttp.send();
+}
+
+function getDate(surl){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET","http://localhost:8000/GDBSURLS.php?surl="+surl,true);
+    xhttp.onload = function(){
+        Dates = this.responseText;
+        document.getElementById("creationDate").textContent = "Fecha de creacion: "+Dates;
+    }
+    xhttp.send();
+}
+
 function showStatsModal(id){
-    dates = "bomboclat";
+    let elementText = document.getElementById(id).textContent;
+    code = elementText.split("=")[1];
+    getViews(code);
+    getDate(code)
     document.getElementById("defaultStatsModal").showModal();
     miGrafica = this.document.getElementById("Grafica").getContext("2d");
     G1 = new Chart(miGrafica,{
@@ -84,8 +130,6 @@ function showStatsModal(id){
             ]
         }
     });
-    document.getElementById("totalAcces").textContent = "Total de accesos: "+dates;
-    document.getElementById("creationDate").textContent = "Fecha de creacion: "+dates;
     console.log("Do something");
 }
 

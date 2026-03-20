@@ -17,6 +17,10 @@ dialog{
   border-radius: 10px;
 }
 
+button{
+  cursor: pointer;
+}
+
 #defaultStatsModal {
   width: 70%;
   margin-right: auto;
@@ -76,8 +80,10 @@ dialog{
   padding-bottom: 15px;
   max-width: 800px;
   border-radius: 10px;
+  transition: transform 0.3s;
 }
 .URLChangerBox:hover{
+  transform: translateY(-5px);
   box-shadow: 0 0 10px 0 rgb(251, 179, 215);
 }
 
@@ -103,6 +109,10 @@ dialog{
   margin-right: auto;
   margin-bottom: 2px;
   padding: 0;
+  transition: 0.3s;
+}
+.BTNalign:active{
+  transform: scale(98%);
 }
 
 .surlist{
@@ -149,7 +159,7 @@ dialog{
   box-shadow: 0 0 10px 0 rgb(251, 179, 215);
 }
 .AcortBTN:active{
-  background: linear-gradient(45deg,rgb(196,4,100),rgb(190,0,50),rgb(205,196,14));
+  background: linear-gradient(45deg,rgb(233, 51, 142),rgb(217, 35, 90),rgb(224, 129, 56));
   color:rgb(207, 207, 207);
 }
 
@@ -172,11 +182,13 @@ dialog{
   margin-right: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
+  transition: 0.3s;
 }
 .miniBTN:hover{
   box-shadow: 0 0 10px 0 rgb(251, 179, 215);
 }
 .miniBTN:active{
+  transform: scale(98%);
   background: linear-gradient(45deg,rgb(196,4,100),rgb(190,0,50),rgb(205,196,14));
   color:rgb(207, 207, 207);
 }
@@ -184,6 +196,13 @@ dialog{
 .btnsDiv{
   width: 100%;
   text-align: right;
+}
+
+.truncateText{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
 }
 
 .smoothColor{
