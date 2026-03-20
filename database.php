@@ -27,9 +27,7 @@
     $result = $conn->query($sql);
     $Rstring = "";
     if ($result->num_rows > 0) {
-  // Output data of each row
       while($row = $result->fetch_assoc()) {
-        //id_short_cut, short_code, original_url, base_url, creation_date
         $Rstring = $Rstring . $row["base_url"] . $row["short_code"] . " " . $row["original_url"]."\n";
       }
     }
@@ -40,6 +38,10 @@
     global $conn;
     $sql = "CALL GetUrlByCode(\"$surl\");";
     $result = $conn->query($sql)->fetch_assoc();
+    while($conn->more_results()){
+        $conn->next_result();
+        $conn->use_result();
+    }
     return $result["original_url"];
   }
 
@@ -55,5 +57,24 @@
     $sql = "CALL GetCreationDateUrl(\"$surl\");";
     $result = $conn->query($sql)->fetch_assoc();
     return $result["creation_date"];
+  }
+
+  function GetAccessesByDay($surl){
+    global $conn;
+    $sql = "CALL GetAccessesByDay('$surl')";
+    $result = $conn->query($sql);
+    $Rstring = "";
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $Rstring = $Rstring . $row["day"] . $row["total"]."\n";
+      }
+    }
+    echo $Rstring;
+  }
+
+  function InsertAccessLogByCode($surl,$ip,$country){
+    global $conn;
+    $sql = "CALL InsertAccessLogByCode(\"$surl\",\"a\",\"$country\");";
+    $conn->query($sql);
   }
 ?>

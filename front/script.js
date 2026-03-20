@@ -1,5 +1,5 @@
-let G1;
-let G2;
+let G1 = "";
+let G2 = "";
 
 window.onload = function(){
     this.document.getElementById("longURLInput").value = '';
@@ -29,7 +29,7 @@ window.onload = function(){
 
     function addSC(){
         const xhttp = new XMLHttpRequest();
-        xhttp.open("POST","http://localhost:8000/prueba.php",true);
+        xhttp.open("POST","http://localhost:8000/shortcutController.php",true);
         xhttp.onload = function(){
             lista2 = "";
             surlen = lista.length;
@@ -90,52 +90,76 @@ function getDate(surl){
     xhttp.send();
 }
 
+function getGraphs1(surl){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET","http://localhost:8000/GGDBSURLS.php?surl="+surl,true);
+    xhttp.onload = function(){
+        R = this.responseText;
+        console.log(R);
+
+        Titles = [];
+        Values = [];
+
+        let miGrafica = document.getElementById("Grafica").getContext("2d");
+        G1 = new Chart(miGrafica,{
+            type:"line",
+            data:{
+                labels:["prueba"],
+                datasets:[
+                    {
+                        label:"Vistas diarias",
+                        backgroundColor:"rgb(255, 0, 255)",
+                        data:[12],
+                        borderColor:"rgb(255, 0, 255)"
+                    }
+                ]
+            }
+        });
+    }
+    xhttp.send();
+}
+
+function getGraphs2(surl){
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET","http://localhost:8000/GGDBSURLS.php?surl="+surl,true);
+    xhttp.onload = function(){
+        R = this.responseText;
+        console.log(R);
+
+        Titles = [];
+        Values = [];
+
+        let miGrafica = document.getElementById("GraficaC").getContext("2d");
+        G2 = new Chart(miGrafica,{
+            type:"line",
+            data:{
+                labels:["prueba"],
+                datasets:[
+                    {
+                        label:"Vistas por pais",
+                        backgroundColor:"rgb(255, 157, 0)",
+                        data:[12],
+                        borderColor:"rgb(255, 157, 0)"
+                    }
+                ]
+            }
+        });
+    }
+    xhttp.send();
+}
+
 function showStatsModal(id){
     let elementText = document.getElementById(id).textContent;
     code = elementText.split("=")[1];
     getViews(code);
     getDate(code)
+    getGraphs1(code);
+    getGraphs2(code);
     document.getElementById("defaultStatsModal").showModal();
-    miGrafica = this.document.getElementById("Grafica").getContext("2d");
-    G1 = new Chart(miGrafica,{
-        type:"line",
-        data:{
-            labels:[
-                "vino","Tequila","atun","queso","pan"
-            ],
-            datasets:[
-                {
-                    label:"Visitas diarias",
-                    backgroundColor:"rgb(243, 53, 150)",
-                    data:[12,34,100,34,90],
-                    borderColor:"rgb(243, 53, 150)"
-                }
-            ]
-        }
-    });
-    miGrafica2 = this.document.getElementById("GraficaC").getContext("2d");
-    G2 = new Chart(miGrafica2,{
-        type:"line",
-        data:{
-            labels:[
-                "vino","Tequila","atun","queso","pan"
-            ],
-            datasets:[
-                {
-                    label:"Visitas por pais",
-                    backgroundColor:"rgb(255, 157, 0)",
-                    data:[12,34,100,34,90],
-                    borderColor:"rgb(255, 157, 0)"
-                }
-            ]
-        }
-    });
-    console.log("Do something");
 }
 
 function DONTshowStatsModal(){
     document.getElementById("defaultStatsModal").close();
     G1.destroy();
     G2.destroy();
-    console.log("DONT do something");
 }

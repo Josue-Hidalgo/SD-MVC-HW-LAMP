@@ -8,7 +8,7 @@
     require_once("database.php");
 
     $validcharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    $Domain = "http://147.224.54.66/prueba.php?urlcode=";
+    $Domain = "http://147.224.54.66/shortcutController.php?urlcode=";
     
     $shortcutAccess = [];
     $ShortURL = [];
@@ -54,17 +54,15 @@
     function getURL($urlCode){
         global $ShortURL, $shortcutAccess;
         $url = GetUrlByCode($urlCode);
+        
         echo $url;
         if(!$url){
             httpNotFound();
         }
         $ip = getIP();
         $country = getIPCountry($ip);
-        $date = date("l jS \of F Y h:i:s A");
-        if(!$shortcutAccess[$urlCode]){
-            $shortcutAccess[$urlCode] = [];
-        }
-        $shortcutAccess[$urlCode] += [["userIP" =>$ip, "country"=>$country, "date"=>$date]];
+        
+        InsertAccessLogByCode($surl,$ip,$country);
 
         header('Location: '.$url);//esto si
         exit();
